@@ -3,34 +3,101 @@ import React, { Component } from "react";
 class App extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      firstName: "",
+      lastName: "",
+      age: "",
+      gender: "",
+      location: "",
+      dietaryRestriction: {
+        isVegan: false,
+        isKosher: false,
+        isLactoseFree: false,
+      },
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value,
+    });
   }
 
   render() {
     return (
       <main>
         <form>
-          <input placeholder="First Name" />
+          <input
+            type="text"
+            name="firstName"
+            value={this.state.firstName}
+            onChange={this.handleChange}
+            placeholder="First Name"
+          />
 
           <br />
 
-          <input placeholder="Last Name" />
+          <input
+            type="text"
+            name="lastName"
+            value={this.state.lastName}
+            onChange={this.handleChange}
+            placeholder="Last Name"
+          />
 
           <br />
 
-          <input placeholder="Age" />
+          <input
+            type="text"
+            name="age"
+            value={this.state.age}
+            onChange={this.handleChange}
+            placeholder="Age"
+          />
 
           <br />
 
-          {/* Create radio buttons for gender here */}
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="male"
+              checked={this.state.gender === "male"}
+              onChange={this.handleChange}
+            />
+            Male
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="female"
+              checked={this.state.gender === "female"}
+              onChange={this.handleChange}
+            />
+            Female
+          </label>
 
           <br />
 
-          {/* Create select box for location here */}
+          <select
+            value={this.state.location}
+            name="location"
+            onChange={this.handleChange}
+          >
+            <option value="">-- Please Choose a Location --</option>
+            <option value="san francisco">San Francisco</option>
+            <option value="new york">New York</option>
+            <option value="tokyo">Tokyo</option>
+            <option value="las vegas">Las Vegas</option>
+          </select>
 
           <br />
 
-          {/* Create check boxes for dietary restrictions here */}
+          <input type="checkbox" name="dietaryRestrictions" />
 
           <br />
 
@@ -40,13 +107,15 @@ class App extends Component {
         <hr />
 
         <h2>Entered information:</h2>
-        <p>Your name: {/* First and last name here */}</p>
-        <p>Your age: {/* Age here */}</p>
-        <p>Your gender: {/* Gender here */}</p>
-        <p>Your destination: {/* Destination here */}</p>
+        <p>
+          Your name: {this.state.firstName} {this.state.lastName}
+        </p>
+        <p>Your age: {this.state.age}</p>
+        <p>Your gender: {this.state.gender}</p>
+        <p>Your destination: {this.state.location}</p>
         <p>
           Your dietary restrictions:
-          {/* Dietary restrictions here, comma separated */}
+          {this.state.dietaryRestriction}
         </p>
       </main>
     );
