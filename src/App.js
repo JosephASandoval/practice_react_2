@@ -19,10 +19,24 @@ class App extends Component {
   }
 
   handleChange(e) {
-    const { name, value } = e.target;
-    this.setState({
-      [name]: value,
-    });
+    const { name, value, type, checked } = e.target;
+
+    type === "checkbox"
+      ? this.setState((prevState) => {
+          console.log({ ...prevState.dietaryRestriction });
+          return {
+            dietaryRestriction: {
+              ...prevState.dietaryRestriction,
+              [name]: checked,
+            },
+          };
+        })
+      : this.setState((prevState) => {
+          return {
+            firstName: prevState.firstName,
+            [name]: value,
+          };
+        });
   }
 
   render() {
@@ -118,7 +132,7 @@ class App extends Component {
             />
             Kosher?
           </label>
-          
+
           <br />
 
           <label>
@@ -147,7 +161,9 @@ class App extends Component {
         <p>Your destination: {this.state.location}</p>
         <p>
           Your dietary restrictions:
-          {}
+          {this.state.dietaryRestriction.isVegan ? "Vegan" : null}{" "}
+          {this.state.dietaryRestriction.isKosher ? "Kosher" : null}{" "}
+          {this.state.dietaryRestriction.isLactoseFree ? "Lactose Free" : null}
         </p>
       </main>
     );
