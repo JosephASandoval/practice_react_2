@@ -97,7 +97,39 @@ class App extends Component {
 
           <br />
 
-          <input type="checkbox" name="dietaryRestrictions" />
+          <label>
+            <input
+              type="checkbox"
+              name="isVegan"
+              checked={this.state.dietaryRestriction.isVegan}
+              onChange={this.handleChange}
+            />
+            Vegan?
+          </label>
+
+          <br />
+
+          <label>
+            <input
+              type="checkbox"
+              name="isKosher"
+              checked={this.state.dietaryRestriction.isKosher}
+              onChange={this.handleChange}
+            />
+            Kosher?
+          </label>
+          
+          <br />
+
+          <label>
+            <input
+              type="checkbox"
+              name="isLactoseFree"
+              checked={this.state.dietaryRestriction.isLactoseFree}
+              onChange={this.handleChange}
+            />
+            Lactose Free?
+          </label>
 
           <br />
 
@@ -115,7 +147,7 @@ class App extends Component {
         <p>Your destination: {this.state.location}</p>
         <p>
           Your dietary restrictions:
-          {this.state.dietaryRestriction}
+          {}
         </p>
       </main>
     );
